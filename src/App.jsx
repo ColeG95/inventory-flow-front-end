@@ -2,6 +2,9 @@ import SideNav from "./layout/components/SideNav";
 import MainLayout from "./layout/MainLayout";
 import ThemeProvider from "@mui/material/styles/ThemeProvider";
 import createTheme from "@mui/material/styles/createTheme";
+import ScreenContext from "./context/screen-context";
+
+import { useState } from "react";
 
 const theme = createTheme({
   palette: {
@@ -21,12 +24,19 @@ const theme = createTheme({
 });
 
 function App() {
+  const [selectedScreen, setSelectedScreen] = useState("Inventory Management");
+
   return (
-    <>
+    <ScreenContext.Provider
+      value={{
+        selectedScreen: selectedScreen,
+        setSelectedScreen: setSelectedScreen,
+      }}
+    >
       <ThemeProvider theme={theme}>
         <MainLayout />
       </ThemeProvider>
-    </>
+    </ScreenContext.Provider>
   );
 }
 

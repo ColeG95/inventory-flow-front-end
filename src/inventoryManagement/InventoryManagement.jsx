@@ -4,13 +4,7 @@
 // import Alert from "react-bootstrap/Button";
 
 function InventoryManagement() {
-  return (
-    <>
-      <div>
-        TExtsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfssdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfssdfd
-      </div>
-    </>
-  );
+  return <div>Inventory Management</div>;
 }
 
 export default InventoryManagement;
