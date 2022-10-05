@@ -1,0 +1,24 @@
+.card {
+  text-align: left;
+  border-width: 2px;
+}
+
+.cardSelected {
+  text-align: left;
+  border-width: 2px;
+  border-color: rgb(119, 213, 119);
+}
+
+.cardTitle {
+  font-size: 2em;
+}
+
+.subtext {
+  color: grey;
+  font-size: 0.9em;
+}
+
+.button {
+  color: rgb(119, 213, 119);
+  text-align: center;
+}
