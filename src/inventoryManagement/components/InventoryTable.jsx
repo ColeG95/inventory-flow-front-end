@@ -1,43 +1,16 @@
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import TableHeaders from "./TableHeaders";
+import TableData from "./TableData";
 import "./InventoryTable.css";
-import { useEffect } from "react";
-
-// inventory: [
-//   {
-//     name: "Monitor",
-//     sku: 123,
-//     volume: 5,
-//     volumeUnits: "cubic feet",
-//     price: 119.99,
-//     currency: "USD",
-//     imageUrl:
-//       "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/HMUA2_AV1?wid=2000&hei=2000&fmt=jpeg&qlt=95&.v=1563859125527",
-//     quantity: 243,
-//   },
-
-// warehouseCity, name, quantity, price, currency, volume, sku
+import { Typography } from "@mui/material";
 
 function InventoryTable({ selectedWarehouses }) {
   let allData = [];
   let distinctData = [];
   let count = 0;
-
-  // function transformData(warehouse) {
-  //   const location = warehouse.city;
-  //   const inventory = warehouse.inventory;
-  //   for (let item of inventory) {
-  //     const itemObj = {
-  //       ...item,
-  //     };
-  //     allData.push(itemObj);
-  //   }
-  // }
 
   function mergeData(allData) {
     let itemNames = [];
@@ -46,24 +19,29 @@ function InventoryTable({ selectedWarehouses }) {
     }
     itemNames.filter((v, i, a) => a.indexOf(v) === i);
     for (let name of itemNames) {
-      count++;
       let dataFilter = [...allData];
-      dataFilter.filter((item) => item.name === name);
+      const nameProperties = dataFilter.find((item) => item.name === name);
       let totalQty = 0;
-      for (let item of dataFilter) {
-        totalQty += item.quantity;
+      for (let item of allData) {
+        if (item.name === name) totalQty += item.quantity;
       }
-      distinctData.push({
-        className: count % 2 === 0 ? "light" : "dark",
+      const index = distinctData.findIndex((item) => item.name === name);
+      const newDataObj = {
         name: name,
         qty: totalQty,
-        volume: dataFilter[0].volume,
-        price: dataFilter[0].price,
-        currency: dataFilter[0].currency,
-        sku: dataFilter[0].sku,
-        volumeUnits: dataFilter[0].volumeUnits,
-        imageUrl: dataFilter[0].imageUrl,
-      });
+        volume: nameProperties.volume,
+        price: nameProperties.price,
+        currency: nameProperties.currency,
+        sku: nameProperties.sku,
+        volumeUnits: nameProperties.volumeUnits,
+        imageUrl: nameProperties.imageUrl,
+      };
+      if (index === -1) {
+        distinctData.push(newDataObj);
+      } else {
+        distinctData[index] = newDataObj;
+      }
+      count++;
     }
   }
 
@@ -73,46 +51,31 @@ function InventoryTable({ selectedWarehouses }) {
 
   mergeData(allData);
 
-  return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="customized table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Inventory Item</TableCell>
-            <TableCell align="right">Quantity</TableCell>
-
-            <TableCell align="right">Volume&nbsp;(g)</TableCell>
-            <TableCell align="right">Price</TableCell>
-            <TableCell align="right">Currency</TableCell>
-            {/* <TableCell align="right">Protein&nbsp;(g)</TableCell> */}
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {distinctData.map((dataItem) => {
-            // console.log("hello");
-            // console.log(dataItem);
-            return (
-              <TableRow
-                key={dataItem.name}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                className={dataItem.className}
-              >
-                <TableCell component="th" scope="row">
-                  {dataItem.name}
-                </TableCell>
-                <TableCell align="right">{dataItem.qty}</TableCell>
-
-                <TableCell align="right">{dataItem.volume}</TableCell>
-                <TableCell align="right">{dataItem.price}</TableCell>
-                <TableCell align="right">{dataItem.currency}</TableCell>
-                {/* <TableCell align="right">{row.protein}</TableCell> */}
-              </TableRow>
-            );
-          })}
-        </TableBody>
-      </Table>
-    </TableContainer>
-  );
+  if (allData.length === 0) {
+    return (
+      <>
+        <Typography className="noDataText">There's no data here!</Typography>
+        <img
+          className="noDataImg"
+          alt="warehouseImage.jpeg"
+          src="https://firebasestorage.googleapis.com/v0/b/inventory-management-d38e6.appspot.com/o/warehouse.jpg?alt=media&token=4627069c-7210-420a-a2c7-9fd7ec573b02"
+        />
+      </>
+    );
+  } else {
+    return (
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 650 }} aria-label="customized table">
+          <TableHeaders allData={allData} />
+          <TableBody>
+            {distinctData.map((dataItem, i) => {
+              return <TableData dataItem={dataItem} i={i} />;
+            })}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    );
+  }
 }
 
 export default InventoryTable;
