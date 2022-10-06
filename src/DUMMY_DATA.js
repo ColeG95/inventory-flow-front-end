@@ -9,6 +9,7 @@ export let DUMMY_WAREHOUSES = [
     id: 1,
     inventory: [
       {
+        city: "New York",
         name: "Monitor",
         sku: 123,
         volume: 5,
@@ -20,6 +21,7 @@ export let DUMMY_WAREHOUSES = [
         quantity: 243,
       },
       {
+        city: "New York",
         name: "Chair",
         sku: 124,
         volume: 10,
@@ -31,6 +33,7 @@ export let DUMMY_WAREHOUSES = [
         quantity: 122,
       },
       {
+        city: "New York",
         name: "Desk",
         sku: 125,
         volume: 20,
@@ -54,6 +57,7 @@ export let DUMMY_WAREHOUSES = [
     id: 2,
     inventory: [
       {
+        city: "Miami",
         name: "Monitor",
         sku: 123,
         volume: 5,
@@ -65,6 +69,7 @@ export let DUMMY_WAREHOUSES = [
         quantity: 243,
       },
       {
+        city: "Miami",
         name: "Chair",
         sku: 124,
         volume: 10,
@@ -76,6 +81,7 @@ export let DUMMY_WAREHOUSES = [
         quantity: 122,
       },
       {
+        city: "Miami",
         name: "Desk",
         sku: 125,
         volume: 20,
@@ -99,6 +105,7 @@ export let DUMMY_WAREHOUSES = [
     id: 3,
     inventory: [
       {
+        city: "Los Angeles",
         name: "Monitor",
         sku: 123,
         volume: 5,
@@ -110,6 +117,7 @@ export let DUMMY_WAREHOUSES = [
         quantity: 243,
       },
       {
+        city: "Los Angeles",
         name: "Chair",
         sku: 124,
         volume: 10,
@@ -121,6 +129,7 @@ export let DUMMY_WAREHOUSES = [
         quantity: 122,
       },
       {
+        city: "Los Angeles",
         name: "Desk",
         sku: 125,
         volume: 20,
@@ -144,6 +153,7 @@ export let DUMMY_WAREHOUSES = [
     id: 4,
     inventory: [
       {
+        city: "Boise",
         name: "Monitor",
         sku: 123,
         volume: 5,
@@ -155,6 +165,7 @@ export let DUMMY_WAREHOUSES = [
         quantity: 243,
       },
       {
+        city: "Boise",
         name: "Chair",
         sku: 124,
         volume: 10,
@@ -166,6 +177,7 @@ export let DUMMY_WAREHOUSES = [
         quantity: 122,
       },
       {
+        city: "Boise",
         name: "Desk",
         sku: 125,
         volume: 20,
@@ -189,6 +201,7 @@ export let DUMMY_WAREHOUSES = [
     id: 5,
     inventory: [
       {
+        city: "Richmond",
         name: "Monitor",
         sku: 123,
         volume: 5,
@@ -200,6 +213,7 @@ export let DUMMY_WAREHOUSES = [
         quantity: 243,
       },
       {
+        city: "Richmond",
         name: "Chair",
         sku: 124,
         volume: 10,
@@ -211,6 +225,7 @@ export let DUMMY_WAREHOUSES = [
         quantity: 122,
       },
       {
+        city: "Richmond",
         name: "Desk",
         sku: 125,
         volume: 20,

@@ -39,7 +39,7 @@ function InventoryManagement() {
         })}
       </Grid>
       <FilterButton />
-      <InventoryTable />
+      <InventoryTable selectedWarehouses={selectedWarehouses} />
     </>
   );
 }
