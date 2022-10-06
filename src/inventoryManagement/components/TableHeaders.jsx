@@ -6,6 +6,7 @@ function TableHeaders({ allData }) {
   return (
     <TableHead>
       <TableRow>
+        <TableCell></TableCell>
         <TableCell>Inventory Item Name</TableCell>
         <TableCell align="right">Quantity</TableCell>
         <TableCell align="right">

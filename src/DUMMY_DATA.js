@@ -66,7 +66,7 @@ export let DUMMY_WAREHOUSES = [
         currency: "USD",
         imageUrl:
           "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/HMUA2_AV1?wid=2000&hei=2000&fmt=jpeg&qlt=95&.v=1563859125527",
-        quantity: 243,
+        quantity: 131,
       },
       {
         city: "Miami",
@@ -78,7 +78,7 @@ export let DUMMY_WAREHOUSES = [
         currency: "USD",
         imageUrl:
           "https://secure.img1-fg.wfcdn.com/im/96489692/resize-h600-w600%5Ecompr-r85/9470/94709448/Office+Chairs.jpg",
-        quantity: 122,
+        quantity: 12,
       },
       {
         city: "Miami",
@@ -90,7 +90,7 @@ export let DUMMY_WAREHOUSES = [
         currency: "USD",
         imageUrl:
           "https://image-proxy.production.mor.merce.io/800,fit,q80,jpeg/https://images.morfurniture.com/media/catalog/product/canto/PUR_480-2.jpg",
-        quantity: 88,
+        quantity: 440,
       },
     ],
   },
@@ -114,7 +114,7 @@ export let DUMMY_WAREHOUSES = [
         currency: "USD",
         imageUrl:
           "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/HMUA2_AV1?wid=2000&hei=2000&fmt=jpeg&qlt=95&.v=1563859125527",
-        quantity: 243,
+        quantity: 22,
       },
       {
         city: "Los Angeles",
@@ -126,7 +126,7 @@ export let DUMMY_WAREHOUSES = [
         currency: "USD",
         imageUrl:
           "https://secure.img1-fg.wfcdn.com/im/96489692/resize-h600-w600%5Ecompr-r85/9470/94709448/Office+Chairs.jpg",
-        quantity: 122,
+        quantity: 12,
       },
       {
         city: "Los Angeles",
@@ -138,7 +138,7 @@ export let DUMMY_WAREHOUSES = [
         currency: "USD",
         imageUrl:
           "https://image-proxy.production.mor.merce.io/800,fit,q80,jpeg/https://images.morfurniture.com/media/catalog/product/canto/PUR_480-2.jpg",
-        quantity: 88,
+        quantity: 59,
       },
     ],
   },
@@ -162,7 +162,7 @@ export let DUMMY_WAREHOUSES = [
         currency: "USD",
         imageUrl:
           "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/HMUA2_AV1?wid=2000&hei=2000&fmt=jpeg&qlt=95&.v=1563859125527",
-        quantity: 243,
+        quantity: 2,
       },
       {
         city: "Boise",
@@ -174,7 +174,7 @@ export let DUMMY_WAREHOUSES = [
         currency: "USD",
         imageUrl:
           "https://secure.img1-fg.wfcdn.com/im/96489692/resize-h600-w600%5Ecompr-r85/9470/94709448/Office+Chairs.jpg",
-        quantity: 122,
+        quantity: 36,
       },
       {
         city: "Boise",
@@ -186,7 +186,7 @@ export let DUMMY_WAREHOUSES = [
         currency: "USD",
         imageUrl:
           "https://image-proxy.production.mor.merce.io/800,fit,q80,jpeg/https://images.morfurniture.com/media/catalog/product/canto/PUR_480-2.jpg",
-        quantity: 88,
+        quantity: 81,
       },
     ],
   },

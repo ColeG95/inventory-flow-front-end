@@ -3,9 +3,9 @@ import TableBody from "@mui/material/TableBody";
 import TableContainer from "@mui/material/TableContainer";
 import Paper from "@mui/material/Paper";
 import TableHeaders from "./TableHeaders";
-import TableData from "./TableData";
 import "./InventoryTable.css";
 import { Typography } from "@mui/material";
+import TableData from "./TableData";
 
 function InventoryTable({ selectedWarehouses }) {
   let allData = [];
@@ -65,11 +65,19 @@ function InventoryTable({ selectedWarehouses }) {
   } else {
     return (
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="customized table">
+        <Table sx={{ minWidth: 650 }} aria-label="collapsible table">
           <TableHeaders allData={allData} />
           <TableBody>
             {distinctData.map((dataItem, i) => {
-              return <TableData dataItem={dataItem} i={i} />;
+              return (
+                <TableData
+                  dataItem={dataItem}
+                  i={i}
+                  dataItems={[...allData].filter(
+                    (v) => v.name == dataItem.name
+                  )}
+                />
+              );
             })}
           </TableBody>
         </Table>
