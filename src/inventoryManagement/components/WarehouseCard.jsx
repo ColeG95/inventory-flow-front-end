@@ -5,11 +5,19 @@ import {
   Typography,
   CardActions,
   Button,
+  StyledEngineProvider,
 } from "@mui/material";
 
-function WarehouseCard({ warehouse, selectWarehouse }) {
+function WarehouseCard({ warehouse, selectWarehouse, selectedWarehouses }) {
+  let cardClass =
+    selectedWarehouses.indexOf(warehouse) >= 0 ? "cardSelected" : "card";
+
   return (
-    <Card className="card" variant="outlined">
+    <Card
+      className={cardClass}
+      variant="outlined"
+      onClick={() => selectWarehouse(warehouse)}
+    >
       <CardContent>
         <Typography className="cardTitle">{warehouse.city}</Typography>
         <Typography>Space Left: 50,000 ft³</Typography>
@@ -18,11 +26,6 @@ function WarehouseCard({ warehouse, selectWarehouse }) {
         </Typography>
         <Typography className="subtext">Contact: {warehouse.phone}</Typography>
       </CardContent>
-      <CardActions>
-        <Button className="button" onClick={selectWarehouse(warehouse)}>
-          Select
-        </Button>
-      </CardActions>
     </Card>
   );
 }

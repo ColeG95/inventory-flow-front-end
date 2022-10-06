@@ -1,7 +1,5 @@
 function FilterButton() {
-    return ( 
-        <></>
-     );
+  return <div>filter</div>;
 }
 
 export default FilterButton;

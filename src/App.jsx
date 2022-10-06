@@ -1,6 +1,7 @@
 import MainLayout from "./layout/MainLayout";
 import ThemeProvider from "@mui/material/styles/ThemeProvider";
 import createTheme from "@mui/material/styles/createTheme";
+import { StyledEngineProvider } from "@mui/material";
 
 const theme = createTheme({
   palette: {
@@ -21,9 +22,11 @@ const theme = createTheme({
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <MainLayout />
-    </ThemeProvider>
+    <StyledEngineProvider injectFirst>
+      <ThemeProvider theme={theme}>
+        <MainLayout />
+      </ThemeProvider>
+    </StyledEngineProvider>
   );
 }
 

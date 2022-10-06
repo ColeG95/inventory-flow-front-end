@@ -5,6 +5,7 @@ import Toolbar from "@mui/material/Toolbar";
 import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
 import Box from "@mui/material/Box";
+import blue from "@mui/material/colors/blue";
 
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import ListIcon from "@mui/icons-material/List";
@@ -32,7 +33,7 @@ function SideNav() {
       <Box sx={{ overflow: "auto" }}>
         <List sx={{ padding: 0 }}>
           {listObjs.map((listObj) => (
-            <NavListItem listObj={listObj} />
+            <NavListItem listObj={listObj} key={listObj.text} />
           ))}
         </List>
         <Divider />

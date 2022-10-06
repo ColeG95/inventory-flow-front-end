@@ -1,11 +1,13 @@
 .card {
   text-align: left;
   border-width: 2px;
+  cursor: pointer;
 }
 
 .cardSelected {
   text-align: left;
   border-width: 2px;
+  cursor: pointer;
   border-color: rgb(119, 213, 119);
 }
 
