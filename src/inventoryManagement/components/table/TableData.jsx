@@ -12,7 +12,7 @@ function TableData({ dataItem, i, dataItems }) {
         open={open}
         setOpen={setOpen}
       />
-      <TableDataCollapsible dataItems={dataItems} i={i} open={open} />
+      <TableDataCollapsible dataItems={dataItems} open={open} />
     </>
   );
 }

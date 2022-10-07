@@ -5,7 +5,7 @@ import WarehouseCard from "./components/WarehouseCard";
 import { useState } from "react";
 import FilterButton from "./components/FilterButton";
 import DateFilter from "./components/DateFilter";
-import InventoryTable from "./components/InventoryTable";
+import InventoryTable from "./components/table/InventoryTable";
 
 function InventoryManagement() {
   const [selectedWarehouses, setSelectedWarehouses] = useState([

@@ -14,10 +14,18 @@ import SupervisedUserIcon from "@mui/icons-material/SupervisedUserCircle";
 
 function SideNav() {
   const listObjs = [
-    { text: "Main Dashboard", icon: <DashboardIcon /> },
-    { text: "Inventory Management", icon: <WarehouseIcon /> },
-    { text: "Admin Edit Logs", icon: <ListIcon /> },
-    { text: "Users & Permissions", icon: <SupervisedUserIcon /> },
+    { text: "Main Dashboard", icon: <DashboardIcon />, route: "/dashboard" },
+    {
+      text: "Inventory Management",
+      icon: <WarehouseIcon />,
+      route: "/inventory",
+    },
+    { text: "Admin Edit Logs", icon: <ListIcon />, rounte: "/logs" },
+    {
+      text: "Users & Permissions",
+      icon: <SupervisedUserIcon />,
+      route: "/users",
+    },
   ];
 
   return (

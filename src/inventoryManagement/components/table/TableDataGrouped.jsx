@@ -1,8 +1,10 @@
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
-import { IconButton } from "@mui/material";
+import { IconButton, Button } from "@mui/material";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import "./Row.css";
+import "./TableDataGrouped.css";
 
 function TableDataGrouped({ dataItem, i, open, setOpen }) {
   return (
@@ -21,15 +23,22 @@ function TableDataGrouped({ dataItem, i, open, setOpen }) {
         </IconButton>
       </TableCell>
       <TableCell component="th" scope="row">
-        {dataItem.name}
+        <button
+          className="link"
+          onClick={() => {
+            console.log("click");
+          }}
+        >
+          {dataItem.name}
+        </button>
       </TableCell>
-      <TableCell align="right">{dataItem.qty.toLocaleString()}</TableCell>
-      <TableCell align="right">
+      <TableCell className="num">{dataItem.qty.toLocaleString()}</TableCell>
+      <TableCell className="num">
         {(dataItem.volume * dataItem.qty).toLocaleString()}
       </TableCell>
-      <TableCell align="right">{dataItem.volume.toLocaleString()}</TableCell>
-      <TableCell align="right">{dataItem.price.toLocaleString()}</TableCell>
-      <TableCell align="right">{dataItem.sku}</TableCell>
+      <TableCell className="num">{dataItem.volume.toLocaleString()}</TableCell>
+      <TableCell className="num">{dataItem.price.toLocaleString()}</TableCell>
+      <TableCell className="num">{dataItem.sku}</TableCell>
     </TableRow>
   );
 }

@@ -7,9 +7,10 @@ import ListItemText from "@mui/material/ListItemText";
 import { useContext } from "react";
 import ScreenContext from "../../context/screen-context";
 import { useTheme } from "@emotion/react";
+import { Link } from "react-router-dom";
 
 function NavListItem(props) {
-  const { text, icon } = props.listObj;
+  const { text, icon, route } = props.listObj;
   const screenCtx = useContext(ScreenContext);
   const theme = useTheme();
 
