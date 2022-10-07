@@ -1,0 +1,31 @@
+.btnSelected {
+  background-color: #212121;
+}
+
+.btnSelected:hover {
+  background-color: #212121;
+}
+
+.btnNotSelected {
+  background-color: #ffffff;
+}
+
+.btnNotSelected:hover {
+  background-color: #ffffff;
+}
+
+.textSelected {
+  color: #ffffff;
+}
+
+.textSelected:hover {
+  color: #ffffff;
+}
+
+.textNotSelected {
+  color: #212121;
+}
+
+.textNotSelected:hover {
+  color: #212121;
+}

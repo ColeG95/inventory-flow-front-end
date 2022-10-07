@@ -20,7 +20,7 @@ function SideNav() {
       icon: <WarehouseIcon />,
       route: "/inventory",
     },
-    { text: "Admin Edit Logs", icon: <ListIcon />, rounte: "/logs" },
+    { text: "Admin Edit Logs", icon: <ListIcon />, route: "/logs" },
     {
       text: "Users & Permissions",
       icon: <SupervisedUserIcon />,
