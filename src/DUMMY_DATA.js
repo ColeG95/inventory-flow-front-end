@@ -16,7 +16,7 @@ let DUMMY_ITEMS = [
   },
   {
     city: "New York",
-    name: "Monitor",
+    name: "Chair",
     sku: 123,
     volume: 5,
     volumeUnits: "cubic feet",
@@ -31,7 +31,7 @@ let DUMMY_ITEMS = [
   },
   {
     city: "New York",
-    name: "Monitor",
+    name: "Desk",
     sku: 123,
     volume: 5,
     volumeUnits: "cubic feet",
