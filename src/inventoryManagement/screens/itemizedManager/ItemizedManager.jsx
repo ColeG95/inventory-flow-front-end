@@ -3,7 +3,11 @@ import DropdownFilter from "./components/DropdownFilter";
 import { DUMMY_ITEMS } from "../../../DUMMY_DATA";
 import { useEffect, useState } from "react";
 import "./ItemizedManager.css";
-import ItemsTable from "./components/table/ItemsTable";
+import ItemsTable from "./components/ItemsTable";
+import NewButton from "./components/buttons/NewButton";
+import MoveButton from "./components/buttons/MoveButton";
+import ShipButton from "./components/buttons/ShipButton";
+import DeleteButton from "./components/buttons/DeleteButton";
 
 // city, name, status
 function ItemizedManager() {
@@ -16,18 +20,15 @@ function ItemizedManager() {
     if (ogSelectedItem) {
       setName(ogSelectedItem);
     }
-    console.log("useEffect");
     filterName();
   }, []);
 
   function getNameChoices() {
     let names = [];
     for (let item of DUMMY_ITEMS) {
-      console.log(item);
       names.push(item.name);
     }
     nameChoices = names.filter((v, i, a) => a.indexOf(v) === i);
-    console.log(nameChoices);
   }
 
   function filterName() {}
@@ -52,7 +53,7 @@ function ItemizedManager() {
           setSelectedChoice={setName}
         />
       </span>
-      <span>
+      <span className="filterRow">
         <DropdownFilter
           hint="Name"
           choices={nameChoices}
@@ -60,8 +61,11 @@ function ItemizedManager() {
           setSelectedChoice={setName}
         />
       </span>
-
-      <ItemsTable />
+      <NewButton className="filterRow" />
+      <MoveButton className="filterRow" />
+      <ShipButton className="filterRow" />
+      <DeleteButton />
+      <ItemsTable items={DUMMY_ITEMS} />
     </>
   );
 }

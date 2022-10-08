@@ -1,0 +1,13 @@
+.ship {
+  background-color: rgb(141, 201, 244);
+  margin: 0em, 1em;
+}
+
+.move {
+  background-color: rgb(202, 202, 202);
+  margin: 0em, 5vw;
+}
+
+.delete {
+  margin: 0em, 1em;
+}

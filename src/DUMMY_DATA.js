@@ -12,7 +12,7 @@ let DUMMY_ITEMS = [
     createdAt: Date.now(),
     updatedAt: Date.now(),
     status: "Storage",
-    _id: "1",
+    id: "1",
   },
   {
     city: "New York",
@@ -27,7 +27,7 @@ let DUMMY_ITEMS = [
     createdAt: Date.now(),
     updatedAt: Date.now(),
     status: "In Transit",
-    _id: "2",
+    id: "2",
   },
   {
     city: "New York",
@@ -42,7 +42,7 @@ let DUMMY_ITEMS = [
     createdAt: Date.now(),
     updatedAt: Date.now(),
     status: "Loading Bay",
-    _id: "3",
+    id: "3",
   },
   {
     city: "New York",
@@ -57,7 +57,7 @@ let DUMMY_ITEMS = [
     createdAt: Date.now(),
     updatedAt: Date.now(),
     status: "Storage",
-    _id: "4",
+    id: "4",
   },
   {
     city: "New York",
@@ -72,7 +72,7 @@ let DUMMY_ITEMS = [
     createdAt: Date.now(),
     updatedAt: Date.now(),
     status: "Storage",
-    _id: "5",
+    id: "5",
   },
   {
     city: "New York",
@@ -87,7 +87,7 @@ let DUMMY_ITEMS = [
     createdAt: Date.now(),
     updatedAt: Date.now(),
     status: "Storage",
-    _id: "6",
+    id: "6",
   },
   {
     city: "New York",
@@ -102,7 +102,7 @@ let DUMMY_ITEMS = [
     createdAt: Date.now(),
     updatedAt: Date.now(),
     status: "Storage",
-    _id: "7",
+    id: "7",
   },
   {
     city: "New York",
@@ -117,7 +117,7 @@ let DUMMY_ITEMS = [
     createdAt: Date.now(),
     updatedAt: Date.now(),
     status: "Storage",
-    _id: "8",
+    id: "8",
   },
   {
     city: "New York",
@@ -132,7 +132,7 @@ let DUMMY_ITEMS = [
     createdAt: Date.now(),
     updatedAt: Date.now(),
     status: "Storage",
-    _id: "9",
+    id: "9",
   },
   {
     city: "New York",
@@ -147,7 +147,7 @@ let DUMMY_ITEMS = [
     createdAt: Date.now(),
     updatedAt: Date.now(),
     status: "Storage",
-    _id: "10",
+    id: "10",
   },
   {
     city: "New York",
@@ -162,7 +162,7 @@ let DUMMY_ITEMS = [
     createdAt: Date.now(),
     updatedAt: Date.now(),
     status: "Storage",
-    _id: "11",
+    id: "11",
   },
   {
     city: "New York",
@@ -177,7 +177,7 @@ let DUMMY_ITEMS = [
     createdAt: Date.now(),
     updatedAt: Date.now(),
     status: "Storage",
-    _id: "12",
+    id: "12",
   },
   {
     city: "New York",
@@ -192,7 +192,7 @@ let DUMMY_ITEMS = [
     createdAt: Date.now(),
     updatedAt: Date.now(),
     status: "Storage",
-    _id: "13",
+    id: "13",
   },
   {
     city: "New York",
@@ -207,7 +207,7 @@ let DUMMY_ITEMS = [
     createdAt: Date.now(),
     updatedAt: Date.now(),
     status: "Storage",
-    _id: "14",
+    id: "14",
   },
   {
     city: "New York",
@@ -222,7 +222,7 @@ let DUMMY_ITEMS = [
     createdAt: Date.now(),
     updatedAt: Date.now(),
     status: "Storage",
-    _id: "15",
+    id: "15",
   },
   {
     city: "New York",
@@ -237,7 +237,7 @@ let DUMMY_ITEMS = [
     createdAt: Date.now(),
     updatedAt: Date.now(),
     status: "Storage",
-    _id: "16",
+    id: "16",
   },
   {
     city: "New York",
@@ -252,7 +252,7 @@ let DUMMY_ITEMS = [
     createdAt: Date.now(),
     updatedAt: Date.now(),
     status: "Storage",
-    _id: "17",
+    id: "17",
   },
   {
     city: "New York",
@@ -267,7 +267,7 @@ let DUMMY_ITEMS = [
     createdAt: Date.now(),
     updatedAt: Date.now(),
     status: "Storage",
-    _id: "18",
+    id: "18",
   },
   {
     city: "New York",
@@ -282,7 +282,7 @@ let DUMMY_ITEMS = [
     createdAt: Date.now(),
     updatedAt: Date.now(),
     status: "Storage",
-    _id: "19",
+    id: "19",
   },
   {
     city: "New York",
@@ -297,7 +297,7 @@ let DUMMY_ITEMS = [
     createdAt: Date.now(),
     updatedAt: Date.now(),
     status: "Storage",
-    _id: "20",
+    id: "20",
   },
   {
     city: "New York",
@@ -312,7 +312,7 @@ let DUMMY_ITEMS = [
     createdAt: Date.now(),
     updatedAt: Date.now(),
     status: "Storage",
-    _id: "21",
+    id: "21",
   },
   {
     city: "New York",
@@ -327,7 +327,7 @@ let DUMMY_ITEMS = [
     createdAt: Date.now(),
     updatedAt: Date.now(),
     status: "Storage",
-    _id: "22",
+    id: "22",
   },
   {
     city: "New York",
@@ -342,7 +342,7 @@ let DUMMY_ITEMS = [
     createdAt: Date.now(),
     updatedAt: Date.now(),
     status: "Storage",
-    _id: "23",
+    id: "23",
   },
   {
     city: "New York",
@@ -357,7 +357,7 @@ let DUMMY_ITEMS = [
     createdAt: Date.now(),
     updatedAt: Date.now(),
     status: "Storage",
-    _id: "24",
+    id: "24",
   },
   {
     city: "New York",
@@ -372,7 +372,7 @@ let DUMMY_ITEMS = [
     createdAt: Date.now(),
     updatedAt: Date.now(),
     status: "Storage",
-    _id: "25",
+    id: "25",
   },
   {
     city: "New York",
@@ -387,7 +387,7 @@ let DUMMY_ITEMS = [
     createdAt: Date.now(),
     updatedAt: Date.now(),
     status: "Storage",
-    _id: "26",
+    id: "26",
   },
   {
     city: "New York",
@@ -402,7 +402,7 @@ let DUMMY_ITEMS = [
     createdAt: Date.now(),
     updatedAt: Date.now(),
     status: "Storage",
-    _id: "27",
+    id: "27",
   },
   {
     city: "New York",
@@ -417,7 +417,7 @@ let DUMMY_ITEMS = [
     createdAt: Date.now(),
     updatedAt: Date.now(),
     status: "Storage",
-    _id: "28",
+    id: "28",
   },
   {
     city: "New York",
@@ -432,7 +432,7 @@ let DUMMY_ITEMS = [
     createdAt: Date.now(),
     updatedAt: Date.now(),
     status: "Storage",
-    _id: "29",
+    id: "29",
   },
   {
     city: "New York",
@@ -447,7 +447,7 @@ let DUMMY_ITEMS = [
     createdAt: Date.now(),
     updatedAt: Date.now(),
     status: "Storage",
-    _id: "30",
+    id: "30",
   },
 ];
 

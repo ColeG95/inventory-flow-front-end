@@ -1,0 +1,12 @@
+.table {
+  height: 75vh;
+  width: 100%;
+}
+
+.transit {
+  background-color: rgb(255, 190, 190);
+}
+
+.bay {
+  background-color: rgb(202, 202, 255);
+}
