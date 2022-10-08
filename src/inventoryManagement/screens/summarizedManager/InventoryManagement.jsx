@@ -1,10 +1,9 @@
 import { Grid } from "@mui/material";
 import "./InventoryManagement.css";
-import { DUMMY_WAREHOUSES } from "../DUMMY_DATA";
+import { DUMMY_WAREHOUSES } from "../../../DUMMY_DATA";
 import WarehouseCard from "./components/WarehouseCard";
 import { useState } from "react";
 import FilterButton from "./components/FilterButton";
-import DateFilter from "./components/DateFilter";
 import InventoryTable from "./components/table/InventoryTable";
 
 function InventoryManagement() {

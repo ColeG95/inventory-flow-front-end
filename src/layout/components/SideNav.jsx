@@ -11,6 +11,7 @@ import DashboardIcon from "@mui/icons-material/Dashboard";
 import ListIcon from "@mui/icons-material/List";
 import WarehouseIcon from "@mui/icons-material/Warehouse";
 import SupervisedUserIcon from "@mui/icons-material/SupervisedUserCircle";
+import { useLocation } from "react-router-dom";
 
 function SideNav() {
   const listObjs = [

@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect } from "react";
-import InventoryManagement from "../inventoryManagement/InventoryManagement";
+import InventoryManagement from "../inventoryManagement/screens/summarizedManager/InventoryManagement";
 import MainDashboard from "../mainDashboard/MainDashboard";
 import AdminEditLogs from "../adminEditLogs/AdminEditLogs";
 import UsersAndPermissions from "../usersAndPermissions/UsersAndPermissions";

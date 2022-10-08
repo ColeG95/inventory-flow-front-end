@@ -5,8 +5,17 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import "./Row.css";
 import "./TableDataGrouped.css";
+import { Link, useNavigate } from "react-router-dom";
 
 function TableDataGrouped({ dataItem, i, open, setOpen }) {
+  const navigate = useNavigate();
+
+  function navigationHandler() {
+    navigate("/inventory/manager", {
+      state: { selectedItem: dataItem.name },
+    });
+  }
+
   return (
     <TableRow
       key={dataItem.city + dataItem.name}
@@ -23,14 +32,9 @@ function TableDataGrouped({ dataItem, i, open, setOpen }) {
         </IconButton>
       </TableCell>
       <TableCell component="th" scope="row">
-        <button
-          className="link"
-          onClick={() => {
-            console.log("click");
-          }}
-        >
+        <div className="link" onClick={navigationHandler}>
           {dataItem.name}
-        </button>
+        </div>
       </TableCell>
       <TableCell className="num">{dataItem.qty.toLocaleString()}</TableCell>
       <TableCell className="num">

@@ -12,8 +12,6 @@ import { Link, useLocation } from "react-router-dom";
 
 function NavListItem(props) {
   const { text, icon, route } = props.listObj;
-  // const screenCtx = useContext(ScreenContext);
-  const theme = useTheme();
   const loc = useLocation();
   const [btnClass, setBtnClass] = useState();
   const [textClass, setTextClass] = useState();
@@ -22,35 +20,13 @@ function NavListItem(props) {
     setBtnClass(loc.pathname === route ? "btnSelected" : "btnNotSelected");
     setTextClass(loc.pathname === route ? "textSelected" : "textNotSelected");
     console.log("update");
-  }, [loc]);
+  }, [loc.pathname]);
 
   return (
     <ListItem key={text} disablePadding component={Link} to={route}>
-      <ListItemButton
-        // onClick={() => screenCtx.setSelectedScreen(text)}
-        // sx={{
-        //   bgcolor: backgroundColor,
-        //   "&:hover": {
-        //     backgroundColor: backgroundColor,
-        //   },
-        // }}
-        className={btnClass}
-      >
-        <ListItemIcon
-          className={textClass}
-          // sx={{
-          //   color: textColor,
-          // }}
-        >
-          {icon}
-        </ListItemIcon>
-        <ListItemText
-          primary={text}
-          className={textClass}
-          // sx={{
-          //   color: textColor,
-          // }}
-        />
+      <ListItemButton className={btnClass}>
+        <ListItemIcon className={textClass}>{icon}</ListItemIcon>
+        <ListItemText primary={text} className={textClass} />
       </ListItemButton>
     </ListItem>
   );

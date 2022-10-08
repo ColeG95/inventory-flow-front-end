@@ -71,6 +71,7 @@ function InventoryTable({ selectedWarehouses }) {
             {distinctData.map((dataItem, i) => {
               return (
                 <TableData
+                  key={dataItem.name}
                   dataItem={dataItem}
                   i={i}
                   dataItems={[...allData].filter(
