@@ -3,7 +3,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import "./ItemsTable.css";
 import clmns from "../../../../constants";
 
-function ItemsTable({ items }) {
+function ItemsTable({ items, selectedItem, setSelectedItem }) {
   const columns = clmns.itemizedColumnHeadersObjs;
   const rows = items;
 
@@ -15,6 +15,15 @@ function ItemsTable({ items }) {
         pageSize={30}
         rowsPerPageOptions={[30]}
         checkboxSelection
+        selectionModel={selectedItem}
+        onSelectionModelChange={(selection) => {
+          if (selection.length > 1) {
+            setSelectedItem([]);
+            setSelectedItem(selection[1]);
+          } else {
+            setSelectedItem(selection);
+          }
+        }}
       />
     </div>
   );

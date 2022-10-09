@@ -15,6 +15,17 @@
   box-shadow: none;
 }
 
+.edit {
+  background-color: rgb(255, 195, 121);
+  margin: 0.6em 0.5em;
+  box-shadow: none;
+}
+
+.edit:hover {
+  background-color: rgb(212, 151, 76);
+  margin: 0.6em 0.5em;
+}
+
 .delete {
   margin: 0.6em 0.5em;
 }

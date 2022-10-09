@@ -9,17 +9,24 @@ import MoveButton from "./components/buttons/MoveButton";
 import ShipButton from "./components/buttons/ShipButton";
 import DeleteButton from "./components/buttons/DeleteButton";
 import NewModal from "./components/NewModal";
+import UpdateModal from "./components/UpdateModal";
+import EditButton from "./components/buttons/EditButton";
 
 function ItemizedManager() {
   const navSelectedItem = useLocation().state.selectedItem;
   const [nameState, setName] = useState("");
   const [cityState, setCity] = useState("");
   const [statusState, setStatus] = useState("");
-  const [showModal, setShowModal] = useState(false);
+  const [showNewModal, setShowNewModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
   const [items, setItems] = useState(DUMMY_ITEMS);
+  const [selectedItem, setSelectedItem] = useState([]);
   let nameChoices = [];
   let cityChoices = [];
   let statusChoices = [];
+
+  console.log("test");
+  console.log(selectedItem);
 
   useEffect(() => {
     if (navSelectedItem) {
@@ -115,15 +122,31 @@ function ItemizedManager() {
           setSelectedChoice={setCity}
           filter={mainFilter}
         />
-        <NewButton setShowModal={setShowModal} />
+        <NewButton setShowModal={setShowNewModal} />
         <MoveButton />
         <ShipButton />
+        <EditButton
+          setShowModal={setShowEditModal}
+          selectedItem={selectedItem}
+        />
         <DeleteButton />
       </div>
-      <ItemsTable items={items} />
+      <ItemsTable
+        items={items}
+        selectedItem={selectedItem}
+        setSelectedItem={setSelectedItem}
+      />
       <NewModal
-        showModal={showModal}
-        setShowModal={setShowModal}
+        showModal={showNewModal}
+        setShowModal={setShowNewModal}
+        nameChoices={nameChoices}
+        cityChoices={cityChoices}
+        statusChoices={statusChoices}
+      />
+      <UpdateModal
+        selectedItem={items[selectedItem - 1]}
+        showModal={showEditModal}
+        setShowModal={setShowEditModal}
         nameChoices={nameChoices}
         cityChoices={cityChoices}
         statusChoices={statusChoices}

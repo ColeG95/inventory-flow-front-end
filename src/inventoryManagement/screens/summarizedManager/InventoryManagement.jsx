@@ -2,14 +2,17 @@ import { Grid } from "@mui/material";
 import "./InventoryManagement.css";
 import { DUMMY_WAREHOUSES } from "../../../DUMMY_DATA";
 import WarehouseCard from "./components/WarehouseCard";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import FilterButton from "./components/FilterButton";
 import InventoryTable from "./components/table/InventoryTable";
+import axios from "axios";
 
 function InventoryManagement() {
   const [selectedWarehouses, setSelectedWarehouses] = useState([
     DUMMY_WAREHOUSES[0],
   ]);
+
+  useEffect(() => {}, []);
 
   function selectWarehouseHandler(warehouse) {
     setSelectedWarehouses((prevState) => {
