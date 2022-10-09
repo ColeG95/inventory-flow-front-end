@@ -8,9 +8,8 @@ import NewButton from "./components/buttons/NewButton";
 import MoveButton from "./components/buttons/MoveButton";
 import ShipButton from "./components/buttons/ShipButton";
 import DeleteButton from "./components/buttons/DeleteButton";
-import Modal from "./components/Modal";
+import NewModal from "./components/NewModal";
 
-// city, name, status
 function ItemizedManager() {
   const navSelectedItem = useLocation().state.selectedItem;
   const [nameState, setName] = useState("");
@@ -92,7 +91,6 @@ function ItemizedManager() {
   }
 
   getChoices();
-
   return (
     <>
       <div className="actions">
@@ -123,7 +121,13 @@ function ItemizedManager() {
         <DeleteButton />
       </div>
       <ItemsTable items={items} />
-      <Modal showModal={showModal} setShowModal={setShowModal} />
+      <NewModal
+        showModal={showModal}
+        setShowModal={setShowModal}
+        nameChoices={nameChoices}
+        cityChoices={cityChoices}
+        statusChoices={statusChoices}
+      />
     </>
   );
 }

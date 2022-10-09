@@ -1,0 +1,17 @@
+.bar {
+  background-color: #212121;
+  position: relative;
+}
+
+.barText {
+  color: white;
+}
+
+.barBtn {
+  color: #77d577;
+  font-weight: bold;
+}
+
+.inline {
+  margin-left: 1em;
+}
