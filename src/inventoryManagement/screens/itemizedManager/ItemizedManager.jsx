@@ -8,24 +8,26 @@ import NewButton from "./components/buttons/NewButton";
 import MoveButton from "./components/buttons/MoveButton";
 import ShipButton from "./components/buttons/ShipButton";
 import DeleteButton from "./components/buttons/DeleteButton";
+import Modal from "./components/Modal";
 
 // city, name, status
 function ItemizedManager() {
-  const ogSelectedItem = useLocation().state.selectedItem;
+  const navSelectedItem = useLocation().state.selectedItem;
   const [nameState, setName] = useState("");
   const [cityState, setCity] = useState("");
   const [statusState, setStatus] = useState("");
+  const [showModal, setShowModal] = useState(false);
   const [items, setItems] = useState(DUMMY_ITEMS);
   let nameChoices = [];
   let cityChoices = [];
   let statusChoices = [];
 
-  // useEffect(() => {
-  //   if (ogSelectedItem) {
-  //     setName(ogSelectedItem);
-  //   }
-  //   filterName();
-  // }, []);
+  useEffect(() => {
+    if (navSelectedItem) {
+      setName(navSelectedItem);
+    }
+    mainFilter(navSelectedItem, "name");
+  }, []);
 
   function getChoices() {
     let names = [];
@@ -115,12 +117,13 @@ function ItemizedManager() {
           setSelectedChoice={setCity}
           filter={mainFilter}
         />
-        <NewButton />
+        <NewButton setShowModal={setShowModal} />
         <MoveButton />
         <ShipButton />
         <DeleteButton />
       </div>
       <ItemsTable items={items} />
+      <Modal showModal={showModal} setShowModal={setShowModal} />
     </>
   );
 }

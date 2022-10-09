@@ -1,8 +1,13 @@
 import { Button } from "@mui/material";
 
-function NewButton() {
+function NewButton({ setShowModal }) {
   return (
-    <Button variant="contained" color="success" className="new">
+    <Button
+      variant="contained"
+      color="success"
+      className="new"
+      onClick={setShowModal}
+    >
       New
     </Button>
   );
