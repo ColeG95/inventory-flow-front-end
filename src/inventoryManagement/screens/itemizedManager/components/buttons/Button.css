@@ -1,13 +1,33 @@
 .ship {
   background-color: rgb(141, 201, 244);
-  margin: 0em, 1em;
+  margin: 0.6em 0.5em;
+  box-shadow: none;
+}
+
+.ship:hover {
+  background-color: rgb(89, 166, 221);
+  margin: 0.6em 0.5em;
 }
 
 .move {
   background-color: rgb(202, 202, 202);
-  margin: 0em, 5vw;
+  margin: 0.6em 0.5em;
+  box-shadow: none;
 }
 
 .delete {
-  margin: 0em, 1em;
+  margin: 0.6em 0.5em;
+}
+
+.new {
+  background-color: #77d577;
+  color: black;
+  margin: 0.6em 0.5em;
+  box-shadow: none;
+}
+
+.new:hover {
+  background-color: #52b452;
+  color: black;
+  margin: 0.6em 0.5em;
 }

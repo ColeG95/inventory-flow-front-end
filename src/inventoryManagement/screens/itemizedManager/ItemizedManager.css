@@ -1,7 +1,5 @@
-.filterRow {
-  float: left;
-}
-
-.inlineBtn {
-  float: left;
+.actions {
+  display: flex;
+  justify-content: start;
+  align-items: flex-end;
 }

@@ -12,60 +12,115 @@ import DeleteButton from "./components/buttons/DeleteButton";
 // city, name, status
 function ItemizedManager() {
   const ogSelectedItem = useLocation().state.selectedItem;
-  const [name, setName] = useState("");
+  const [nameState, setName] = useState("");
+  const [cityState, setCity] = useState("");
+  const [statusState, setStatus] = useState("");
   const [items, setItems] = useState(DUMMY_ITEMS);
   let nameChoices = [];
+  let cityChoices = [];
+  let statusChoices = [];
 
-  useEffect(() => {
-    if (ogSelectedItem) {
-      setName(ogSelectedItem);
-    }
-    filterName();
-  }, []);
+  // useEffect(() => {
+  //   if (ogSelectedItem) {
+  //     setName(ogSelectedItem);
+  //   }
+  //   filterName();
+  // }, []);
 
-  function getNameChoices() {
+  function getChoices() {
     let names = [];
+    let cities = [];
+    let statuses = [];
     for (let item of DUMMY_ITEMS) {
       names.push(item.name);
+      cities.push(item.city);
+      statuses.push(item.status);
     }
     nameChoices = names.filter((v, i, a) => a.indexOf(v) === i);
+    cityChoices = cities.filter((v, i, a) => a.indexOf(v) === i);
+    statusChoices = statuses.filter((v, i, a) => a.indexOf(v) === i);
   }
 
-  function filterName() {}
+  function filterName(itemsArray, name = nameState) {
+    return itemsArray.filter((v) => v.name === name);
+  }
 
-  getNameChoices();
+  function filterCity(itemsArray, city = cityState) {
+    return itemsArray.filter((v) => v.city === city);
+  }
+
+  function filterStatus(itemsArray, status = statusState) {
+    return itemsArray.filter((v) => v.status === status);
+  }
+
+  function mainFilter(value, type) {
+    let localItems = [...DUMMY_ITEMS];
+    if (type === "name") {
+      if (value !== "") {
+        localItems = filterName(localItems, value);
+      }
+      if (cityState !== "") {
+        localItems = filterCity(localItems, cityState);
+      }
+      if (statusState !== "") {
+        localItems = filterStatus(localItems, statusState);
+      }
+    } else if (type === "status") {
+      if (value !== "") {
+        localItems = filterStatus(localItems, value);
+      }
+      if (cityState !== "") {
+        localItems = filterCity(localItems, cityState);
+      }
+      if (nameState !== "") {
+        localItems = filterName(localItems, nameState);
+      }
+    } else if (type === "city") {
+      if (value !== "") {
+        localItems = filterCity(localItems, value);
+      }
+      if (statusState !== "") {
+        localItems = filterStatus(localItems, statusState);
+      }
+      if (nameState !== "") {
+        localItems = filterName(localItems, nameState);
+      }
+    }
+    setItems(localItems);
+  }
+
+  getChoices();
 
   return (
     <>
-      <span className="filterRow">
+      <div className="actions">
         <DropdownFilter
           hint="Name"
           choices={nameChoices}
-          selectedChoice={name}
+          selectedChoice={nameState}
           setSelectedChoice={setName}
+          filter={mainFilter}
         />
-      </span>
-      <span className="filterRow">
         <DropdownFilter
-          hint="Name"
-          choices={nameChoices}
-          selectedChoice={name}
-          setSelectedChoice={setName}
+          hint="Status"
+          choices={statusChoices}
+          selectedChoice={statusState}
+          setSelectedChoice={setStatus}
+          filter={mainFilter}
         />
-      </span>
-      <span className="filterRow">
         <DropdownFilter
-          hint="Name"
-          choices={nameChoices}
-          selectedChoice={name}
-          setSelectedChoice={setName}
+          hint="City"
+          choices={cityChoices}
+          selectedChoice={cityState}
+          setSelectedChoice={setCity}
+          filter={mainFilter}
         />
-      </span>
-      <NewButton className="filterRow" />
-      <MoveButton className="filterRow" />
-      <ShipButton className="filterRow" />
-      <DeleteButton />
-      <ItemsTable items={DUMMY_ITEMS} />
+        <NewButton />
+        <MoveButton />
+        <ShipButton />
+        <DeleteButton />
+      </div>
+      <ItemsTable items={items} />
     </>
   );
 }

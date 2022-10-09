@@ -5,10 +5,19 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import "./DropdownFilter.css";
 
-function DropdownFilter({ hint, choices, selectedChoice, setSelectedChoice }) {
+function DropdownFilter({
+  hint,
+  choices,
+  selectedChoice,
+  setSelectedChoice,
+  filter,
+}) {
   const handleChange = (event) => {
     setSelectedChoice(event.target.value);
+    filter(event.target.value, hint.toLowerCase());
+    console.log("filter");
   };
+
   return (
     <div>
       <FormControl className="dropdown" sx={{ m: 1 }}>
@@ -18,7 +27,6 @@ function DropdownFilter({ hint, choices, selectedChoice, setSelectedChoice }) {
           id="demo-simple-select-autowidth"
           value={selectedChoice}
           onChange={handleChange}
-          //   autoWidth
           label={hint}
         >
           <MenuItem value="">

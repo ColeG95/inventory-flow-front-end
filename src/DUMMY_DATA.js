@@ -11,7 +11,7 @@ let DUMMY_ITEMS = [
       "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/HMUA2_AV1?wid=2000&hei=2000&fmt=jpeg&qlt=95&.v=1563859125527",
     createdAt: Date.now(),
     updatedAt: Date.now(),
-    status: "Storage",
+    status: "In Transit",
     id: "1",
   },
   {

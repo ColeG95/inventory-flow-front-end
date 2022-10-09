@@ -3,7 +3,7 @@ import "./Button.css";
 
 function DeleteButton() {
   return (
-    <Button variant="outlined" color="error">
+    <Button variant="outlined" color="error" className="delete">
       Delete
     </Button>
   );
