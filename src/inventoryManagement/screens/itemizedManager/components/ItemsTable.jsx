@@ -6,14 +6,14 @@ import clmns from "../../../../constants";
 function ItemsTable({ items, selectedItem, setSelectedItem }) {
   const columns = clmns.itemizedColumnHeadersObjs;
   const rows = items;
-
+  console.log(selectedItem);
   return (
     <div className="table">
       <DataGrid
         rows={rows}
         columns={columns}
-        pageSize={30}
-        rowsPerPageOptions={[30]}
+        pageSize={20}
+        rowsPerPageOptions={[20]}
         checkboxSelection
         selectionModel={selectedItem}
         onSelectionModelChange={(selection) => {
@@ -21,7 +21,7 @@ function ItemsTable({ items, selectedItem, setSelectedItem }) {
             setSelectedItem([]);
             setSelectedItem(selection[1]);
           } else {
-            setSelectedItem(selection);
+            setSelectedItem(selection[0]);
           }
         }}
       />

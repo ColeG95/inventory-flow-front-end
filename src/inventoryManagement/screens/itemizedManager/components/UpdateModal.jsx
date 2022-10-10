@@ -1,4 +1,4 @@
-import { useState, forwardRef } from "react";
+import { useState, forwardRef, useEffect } from "react";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import ListItem from "@mui/material/ListItem";
@@ -25,16 +25,44 @@ function UpdateModal({
   cityChoices,
   statusChoices,
   selectedItem,
+  selectedIndex,
 }) {
-  const [selectedName, setSelectedName] = useState(selectedItem.name);
-  const [selectedCity, setSelectedCity] = useState(selectedItem.city);
-  const [selectedStatus, setSelectedStatus] = useState(selectedItem.status);
-  const [selectedVolume, setSelectedVolume] = useState(selectedItem.volume);
-  const [selectedUnits, setSelectedUnits] = useState(selectedItem.volumeUnits);
-  const [selectedCurrency, setSelectedCurrency] = useState(
-    selectedItem.currency
+  console.log("here");
+  console.log(selectedItem);
+
+  useEffect(() => {
+    setSelectedName(selectedItem.name);
+    setSelectedCity(selectedItem.city);
+    setSelectedStatus(selectedItem.status);
+    setSelectedUnits(selectedItem.volumeUnits);
+    setSelectedCurrency(selectedItem.currency);
+    setSelectedVolume(selectedItem.volume);
+    setSelectedPrice(selectedItem.price);
+  }, [selectedItem]);
+
+  const [selectedName, setSelectedName] = useState(
+    selectedItem?.name !== undefined ? selectedItem.name.toString() : ""
   );
-  const [selectedPrice, setSelectedPrice] = useState(selectedItem.price);
+  const [selectedCity, setSelectedCity] = useState(
+    selectedItem?.city !== undefined ? selectedItem.city.toString() : ""
+  );
+  const [selectedStatus, setSelectedStatus] = useState(
+    selectedItem?.status !== undefined ? selectedItem.status.toString() : ""
+  );
+  const [selectedUnits, setSelectedUnits] = useState(
+    selectedItem?.volumeUnits !== undefined
+      ? selectedItem.volumeUnits.toString()
+      : ""
+  );
+  const [selectedCurrency, setSelectedCurrency] = useState(
+    selectedItem?.currency !== undefined ? selectedItem.currency.toString() : ""
+  );
+  const [selectedVolume, setSelectedVolume] = useState(
+    selectedItem?.volume !== undefined ? selectedItem.volume : ""
+  );
+  const [selectedPrice, setSelectedPrice] = useState(
+    selectedItem?.price !== undefined ? selectedItem.price : ""
+  );
 
   function handleClickOpen() {
     setShowModal(true);
@@ -42,6 +70,22 @@ function UpdateModal({
 
   function handleClose() {
     setShowModal(false);
+  }
+
+  function nameHandler(event) {
+    setSelectedName(event.target.value);
+  }
+
+  function cityHandler(event) {
+    setSelectedCity(event.target.value);
+  }
+
+  function volumeHandler(event) {
+    setSelectedVolume(event.target.value);
+  }
+
+  function priceHandler(event) {
+    setSelectedPrice(event.target.value);
   }
 
   return (
@@ -81,7 +125,7 @@ function UpdateModal({
           </Toolbar>
         </AppBar>
         <List>
-          <ListItem>
+          <ListItem key="name">
             <Toggle
               choices={nameChoices}
               selected={selectedName}
@@ -92,10 +136,12 @@ function UpdateModal({
               label="New Name"
               variant="outlined"
               className="inline"
+              value={selectedName}
+              onChange={nameHandler}
             />
           </ListItem>
           <Divider />
-          <ListItem>
+          <ListItem key="city">
             <Toggle
               choices={cityChoices}
               selected={selectedCity}
@@ -106,10 +152,12 @@ function UpdateModal({
               label="New City"
               variant="outlined"
               className="inline"
+              value={selectedCity}
+              onChange={cityHandler}
             />
           </ListItem>
           <Divider />
-          <ListItem>
+          <ListItem key="status">
             <Toggle
               choices={statusChoices}
               selected={selectedStatus}
@@ -117,16 +165,17 @@ function UpdateModal({
             />
           </ListItem>
           <Divider />
-          <ListItem>
+          <ListItem key="volume">
             <TextField
               id="outlined-basic"
               label="Storage Volume"
               variant="outlined"
-              defaultValue={selectedVolume}
+              value={selectedVolume}
+              onChange={volumeHandler}
             />
           </ListItem>
           <Divider />
-          <ListItem>
+          <ListItem key="units">
             <Toggle
               choices={["cubic feet", "cubic meters"]}
               selected={selectedUnits}
@@ -134,16 +183,17 @@ function UpdateModal({
             />
           </ListItem>
           <Divider />
-          <ListItem>
+          <ListItem key="price">
             <TextField
               id="outlined-basic"
               label="Price"
               variant="outlined"
-              defaultValue={selectedPrice}
+              value={selectedPrice}
+              onChange={priceHandler}
             />
           </ListItem>
           <Divider />
-          <ListItem>
+          <ListItem key="currency">
             <Toggle
               choices={["USD", "EUR", "AUD", "CAN"]}
               selected={selectedCurrency}

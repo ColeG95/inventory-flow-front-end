@@ -1,6 +1,5 @@
 import { useLocation } from "react-router-dom";
 import DropdownFilter from "./components/DropdownFilter";
-import { DUMMY_ITEMS } from "../../../DUMMY_DATA";
 import { useEffect, useState } from "react";
 import "./ItemizedManager.css";
 import ItemsTable from "./components/ItemsTable";
@@ -11,6 +10,8 @@ import DeleteButton from "./components/buttons/DeleteButton";
 import NewModal from "./components/NewModal";
 import UpdateModal from "./components/UpdateModal";
 import EditButton from "./components/buttons/EditButton";
+import axios from "axios";
+import { CircularProgress } from "@mui/material";
 
 function ItemizedManager() {
   const navSelectedItem = useLocation().state.selectedItem;
@@ -19,16 +20,19 @@ function ItemizedManager() {
   const [statusState, setStatus] = useState("");
   const [showNewModal, setShowNewModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
-  const [items, setItems] = useState(DUMMY_ITEMS);
-  const [selectedItem, setSelectedItem] = useState([]);
+  const [items, setItems] = useState([]);
+  const [baseItems, setBaseItems] = useState([]);
+  const [selectedItemId, setSelectedItemId] = useState();
   let nameChoices = [];
   let cityChoices = [];
   let statusChoices = [];
 
-  console.log("test");
-  console.log(selectedItem);
-
   useEffect(() => {
+    axios.get("http://localhost:9000/item").then((res) => {
+      setBaseItems(res.data);
+      setItems(res.data);
+    });
+
     if (navSelectedItem) {
       setName(navSelectedItem);
     }
@@ -39,7 +43,7 @@ function ItemizedManager() {
     let names = [];
     let cities = [];
     let statuses = [];
-    for (let item of DUMMY_ITEMS) {
+    for (let item of baseItems) {
       names.push(item.name);
       cities.push(item.city);
       statuses.push(item.status);
@@ -62,7 +66,7 @@ function ItemizedManager() {
   }
 
   function mainFilter(value, type) {
-    let localItems = [...DUMMY_ITEMS];
+    let localItems = [...baseItems];
     if (type === "name") {
       if (value !== "") {
         localItems = filterName(localItems, value);
@@ -100,42 +104,47 @@ function ItemizedManager() {
   getChoices();
   return (
     <>
-      <div className="actions">
-        <DropdownFilter
-          hint="Name"
-          choices={nameChoices}
-          selectedChoice={nameState}
-          setSelectedChoice={setName}
-          filter={mainFilter}
+      {items.length === 0 && <CircularProgress />}
+      {items.length > 0 && (
+        <div className="actions">
+          <DropdownFilter
+            hint="Name"
+            choices={nameChoices}
+            selectedChoice={nameState}
+            setSelectedChoice={setName}
+            filter={mainFilter}
+          />
+          <DropdownFilter
+            hint="Status"
+            choices={statusChoices}
+            selectedChoice={statusState}
+            setSelectedChoice={setStatus}
+            filter={mainFilter}
+          />
+          <DropdownFilter
+            hint="City"
+            choices={cityChoices}
+            selectedChoice={cityState}
+            setSelectedChoice={setCity}
+            filter={mainFilter}
+          />
+          <NewButton setShowModal={setShowNewModal} />
+          {/* <MoveButton /> */}
+          {/* <ShipButton /> */}
+          <EditButton
+            setShowModal={setShowEditModal}
+            selectedItem={selectedItemId}
+          />
+          <DeleteButton />
+        </div>
+      )}
+      {items.length > 0 && (
+        <ItemsTable
+          items={items}
+          selectedItem={selectedItemId}
+          setSelectedItem={setSelectedItemId}
         />
-        <DropdownFilter
-          hint="Status"
-          choices={statusChoices}
-          selectedChoice={statusState}
-          setSelectedChoice={setStatus}
-          filter={mainFilter}
-        />
-        <DropdownFilter
-          hint="City"
-          choices={cityChoices}
-          selectedChoice={cityState}
-          setSelectedChoice={setCity}
-          filter={mainFilter}
-        />
-        <NewButton setShowModal={setShowNewModal} />
-        <MoveButton />
-        <ShipButton />
-        <EditButton
-          setShowModal={setShowEditModal}
-          selectedItem={selectedItem}
-        />
-        <DeleteButton />
-      </div>
-      <ItemsTable
-        items={items}
-        selectedItem={selectedItem}
-        setSelectedItem={setSelectedItem}
-      />
+      )}
       <NewModal
         showModal={showNewModal}
         setShowModal={setShowNewModal}
@@ -143,14 +152,17 @@ function ItemizedManager() {
         cityChoices={cityChoices}
         statusChoices={statusChoices}
       />
-      <UpdateModal
-        selectedItem={items[selectedItem - 1]}
-        showModal={showEditModal}
-        setShowModal={setShowEditModal}
-        nameChoices={nameChoices}
-        cityChoices={cityChoices}
-        statusChoices={statusChoices}
-      />
+      {selectedItemId && (
+        <UpdateModal
+          selectedItem={items.find((item) => item.id === selectedItemId)}
+          selectedIndex={selectedItemId - 1}
+          showModal={showEditModal}
+          setShowModal={setShowEditModal}
+          nameChoices={nameChoices}
+          cityChoices={cityChoices}
+          statusChoices={statusChoices}
+        />
+      )}
     </>
   );
 }

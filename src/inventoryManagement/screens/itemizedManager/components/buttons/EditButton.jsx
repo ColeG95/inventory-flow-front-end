@@ -6,7 +6,7 @@ import { useState } from "react";
 function EditButton({ setShowModal, selectedItem }) {
   const [showSnackbar, setShowSnackbar] = useState(false);
   function handleOpen() {
-    if (selectedItem.length === 1) {
+    if (selectedItem) {
       setShowModal(true);
     } else {
       setShowSnackbar(true);

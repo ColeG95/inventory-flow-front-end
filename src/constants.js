@@ -1,8 +1,10 @@
+const BASE_URI = "http://localhost:9000";
+
 const itemizedColumnHeadersObjs = [
   {
     field: "id",
     headerName: "ID",
-    flex: 1,
+    flex: 2.2,
   },
   {
     field: "name",
@@ -30,7 +32,7 @@ const itemizedColumnHeadersObjs = [
     field: "sku",
     headerName: "SKU",
     type: "number",
-    flex: 1,
+    flex: 0.5,
   },
   {
     field: "updatedAt",
@@ -51,13 +53,13 @@ const itemizedColumnHeadersObjs = [
   {
     field: "currency",
     headerName: "Currency",
-    flex: 1,
+    flex: 0.8,
   },
   {
     field: "volume",
     headerName: "Volume",
     type: "number",
-    flex: 1,
+    flex: 0.7,
   },
   {
     field: "volumeUnits",
@@ -66,4 +68,4 @@ const itemizedColumnHeadersObjs = [
   },
 ];
 
-export default { itemizedColumnHeadersObjs };
+export default { itemizedColumnHeadersObjs, BASE_URI };

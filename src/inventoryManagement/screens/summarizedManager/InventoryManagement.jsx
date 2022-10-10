@@ -1,6 +1,5 @@
-import { Grid } from "@mui/material";
+import { Grid, CircularProgress } from "@mui/material";
 import "./InventoryManagement.css";
-import { DUMMY_WAREHOUSES } from "../../../DUMMY_DATA";
 import WarehouseCard from "./components/WarehouseCard";
 import { useEffect, useState } from "react";
 import FilterButton from "./components/FilterButton";
@@ -8,11 +7,16 @@ import InventoryTable from "./components/table/InventoryTable";
 import axios from "axios";
 
 function InventoryManagement() {
-  const [selectedWarehouses, setSelectedWarehouses] = useState([
-    DUMMY_WAREHOUSES[0],
-  ]);
+  const [warehouses, setWarehouses] = useState([]);
+  const [selectedWarehouses, setSelectedWarehouses] = useState([]);
 
-  useEffect(() => {}, []);
+  console.log(warehouses.length);
+  useEffect(() => {
+    axios.get("http://localhost:9000/warehouse").then((res) => {
+      setWarehouses(res.data);
+      setSelectedWarehouses([res.data[0]]);
+    });
+  }, []);
 
   function selectWarehouseHandler(warehouse) {
     setSelectedWarehouses((prevState) => {
@@ -27,21 +31,25 @@ function InventoryManagement() {
 
   return (
     <>
-      <Grid container rowSpacing={1} columnSpacing={{ xs: 1 }}>
-        {DUMMY_WAREHOUSES.map((warehouse) => {
-          return (
-            <Grid className="gridItem" key={warehouse.id}>
-              <WarehouseCard
-                warehouse={warehouse}
-                selectWarehouse={selectWarehouseHandler}
-                selectedWarehouses={selectedWarehouses}
-              />
-            </Grid>
-          );
-        })}
-      </Grid>
-      <FilterButton />
-      <InventoryTable selectedWarehouses={selectedWarehouses} />
+      {warehouses.length === 0 && <CircularProgress />}
+      {warehouses.length > 0 && (
+        <Grid container rowSpacing={1} columnSpacing={{ xs: 1 }}>
+          {warehouses.map((warehouse) => {
+            return (
+              <Grid className="gridItem" key={warehouse.id}>
+                <WarehouseCard
+                  warehouse={warehouse}
+                  selectWarehouse={selectWarehouseHandler}
+                  selectedWarehouses={selectedWarehouses}
+                />
+              </Grid>
+            );
+          })}
+        </Grid>
+      )}
+      {warehouses.length > 0 && (
+        <InventoryTable selectedWarehouses={selectedWarehouses} />
+      )}
     </>
   );
 }

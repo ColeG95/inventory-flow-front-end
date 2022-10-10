@@ -2,6 +2,7 @@ import MainLayout from "./layout/MainLayout";
 import ThemeProvider from "@mui/material/styles/ThemeProvider";
 import createTheme from "@mui/material/styles/createTheme";
 import { StyledEngineProvider } from "@mui/material";
+import axios from "axios";
 
 const theme = createTheme({
   palette: {

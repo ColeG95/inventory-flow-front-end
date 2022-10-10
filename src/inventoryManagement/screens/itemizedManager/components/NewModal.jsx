@@ -30,6 +30,8 @@ function NewModal({
   const [selectedStatus, setSelectedStatus] = useState("Storage");
   const [selectedUnits, setSelectedUnits] = useState("Cubic Feet");
   const [selectedCurrency, setSelectedCurrency] = useState("USD");
+  const [selectedVolume, setSelectedVolume] = useState("");
+  const [selectedPrice, setSelectedPrice] = useState("");
 
   function handleClickOpen() {
     setShowModal(true);
@@ -39,8 +41,21 @@ function NewModal({
     setShowModal(false);
   }
 
-  console.log("new modal");
-  console.log(nameChoices);
+  function nameHandler(event) {
+    setSelectedName(event.target.value);
+  }
+
+  function cityHandler(event) {
+    setSelectedCity(event.target.value);
+  }
+
+  function volumeHandler(event) {
+    setSelectedVolume(event.target.value);
+  }
+
+  function priceHandler(event) {
+    setSelectedPrice(event.target.value);
+  }
 
   return (
     <div>
@@ -90,6 +105,8 @@ function NewModal({
               label="New Name"
               variant="outlined"
               className="inline"
+              value={selectedName}
+              onChange={nameHandler}
             />
           </ListItem>
           <Divider />
@@ -104,6 +121,8 @@ function NewModal({
               label="New City"
               variant="outlined"
               className="inline"
+              value={selectedCity}
+              onChange={cityHandler}
             />
           </ListItem>
           <Divider />
@@ -120,6 +139,8 @@ function NewModal({
               id="outlined-basic"
               label="Storage Volume"
               variant="outlined"
+              value={selectedVolume}
+              onChange={volumeHandler}
             />
           </ListItem>
           <Divider />
@@ -132,7 +153,13 @@ function NewModal({
           </ListItem>
           <Divider />
           <ListItem>
-            <TextField id="outlined-basic" label="Price" variant="outlined" />
+            <TextField
+              id="outlined-basic"
+              label="Price"
+              variant="outlined"
+              value={selectedPrice}
+              onChange={priceHandler}
+            />
           </ListItem>
           <Divider />
           <ListItem>
