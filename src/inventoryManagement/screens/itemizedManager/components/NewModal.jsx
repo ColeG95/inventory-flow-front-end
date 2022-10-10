@@ -13,6 +13,8 @@ import Slide from "@mui/material/Slide";
 import "./Modal.css";
 import Toggle from "../../../../components/Toggle";
 import { TextField } from "@mui/material";
+import axios from "axios";
+import MySnackbar from "../../../../components/MySnackbar";
 
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -24,6 +26,7 @@ function NewModal({
   nameChoices,
   cityChoices,
   statusChoices,
+  setRefetch,
 }) {
   const [selectedName, setSelectedName] = useState(nameChoices[0]);
   const [selectedCity, setSelectedCity] = useState(cityChoices[0]);
@@ -32,6 +35,22 @@ function NewModal({
   const [selectedCurrency, setSelectedCurrency] = useState("USD");
   const [selectedVolume, setSelectedVolume] = useState("");
   const [selectedPrice, setSelectedPrice] = useState("");
+  const [showSnackbar, setShowSnackbar] = useState(false);
+  const [showSnackbarFail, setShowSnackbarFail] = useState(false);
+
+  function showSuccess() {
+    setShowSnackbar(true);
+    setTimeout(() => {
+      setShowSnackbar(false);
+    }, "5000");
+  }
+
+  function showFailure() {
+    setShowSnackbarFail(true);
+    setTimeout(() => {
+      setShowSnackbarFail(false);
+    }, "5000");
+  }
 
   function handleClickOpen() {
     setShowModal(true);
@@ -39,6 +58,39 @@ function NewModal({
 
   function handleClose() {
     setShowModal(false);
+  }
+
+  function createEntry() {
+    let mySku;
+    if (selectedName === "Monitor") {
+      mySku = "123";
+    } else if (selectedName === "Chair") {
+      mySku = "124";
+    } else if (selectedName === "Desk") {
+      mySku = "125";
+    } else {
+      mySku = "";
+    }
+    axios
+      .post("http://localhost:9000/item", {
+        city: selectedCity,
+        name: selectedName,
+        status: selectedStatus,
+        sku: mySku,
+        volume: selectedVolume,
+        volumeUnits: selectedUnits,
+        price: selectedPrice,
+        currency: selectedCurrency,
+      })
+      .then((res) => {
+        if (res.status >= 200 && res.status < 300) {
+          showSuccess();
+          setRefetch((prev) => prev + 1);
+          handleClose();
+        } else {
+          showFailure();
+        }
+      });
   }
 
   function nameHandler(event) {
@@ -59,6 +111,18 @@ function NewModal({
 
   return (
     <div>
+      <MySnackbar
+        showSnackbar={showSnackbar}
+        setShowSnackbar={setShowSnackbar}
+        message="Entry Created"
+        severity="success"
+      />
+      <MySnackbar
+        showSnackbar={showSnackbarFail}
+        setShowSnackbar={setShowSnackbarFail}
+        message="Fill in all fields!"
+        severity="error"
+      />
       <Dialog
         fullScreen
         open={showModal}
@@ -86,7 +150,7 @@ function NewModal({
             <Button
               autoFocus
               className="barBtn"
-              onClick={handleClose}
+              onClick={createEntry}
               variant="outlined"
             >
               Create

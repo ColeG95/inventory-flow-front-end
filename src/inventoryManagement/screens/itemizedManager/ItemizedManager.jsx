@@ -12,6 +12,7 @@ import UpdateModal from "./components/UpdateModal";
 import EditButton from "./components/buttons/EditButton";
 import axios from "axios";
 import { CircularProgress } from "@mui/material";
+import AreYouSure from "./components/AreYouSure";
 
 function ItemizedManager() {
   const navSelectedItem = useLocation().state.selectedItem;
@@ -23,6 +24,8 @@ function ItemizedManager() {
   const [items, setItems] = useState([]);
   const [baseItems, setBaseItems] = useState([]);
   const [selectedItemId, setSelectedItemId] = useState();
+  const [refetch, setRefetch] = useState(0);
+  const [showAlert, setShowAlert] = useState(false);
   let nameChoices = [];
   let cityChoices = [];
   let statusChoices = [];
@@ -32,12 +35,13 @@ function ItemizedManager() {
       setBaseItems(res.data);
       setItems(res.data);
     });
-
-    if (navSelectedItem) {
-      setName(navSelectedItem);
+    if (refetch === 0) {
+      if (navSelectedItem) {
+        setName(navSelectedItem);
+      }
+      mainFilter(navSelectedItem, "name");
     }
-    mainFilter(navSelectedItem, "name");
-  }, []);
+  }, [refetch]);
 
   function getChoices() {
     let names = [];
@@ -104,7 +108,7 @@ function ItemizedManager() {
   getChoices();
   return (
     <>
-      {items.length === 0 && <CircularProgress />}
+      {items.length === 0 && <CircularProgress className="spinner" />}
       {items.length > 0 && (
         <div className="actions">
           <DropdownFilter
@@ -135,7 +139,7 @@ function ItemizedManager() {
             setShowModal={setShowEditModal}
             selectedItem={selectedItemId}
           />
-          <DeleteButton />
+          <DeleteButton setShowAlert={setShowAlert} />
         </div>
       )}
       {items.length > 0 && (
@@ -143,24 +147,35 @@ function ItemizedManager() {
           items={items}
           selectedItem={selectedItemId}
           setSelectedItem={setSelectedItemId}
+          setShowAlert={setShowAlert}
         />
       )}
+      <AreYouSure
+        showAlert={showAlert}
+        setShowAlert={setShowAlert}
+        selectedItemId={selectedItemId}
+        setSelectedItemId={setSelectedItemId}
+        setRefetch={setRefetch}
+      />
       <NewModal
         showModal={showNewModal}
         setShowModal={setShowNewModal}
         nameChoices={nameChoices}
         cityChoices={cityChoices}
         statusChoices={statusChoices}
+        setRefetch={setRefetch}
       />
-      {selectedItemId && (
+      {selectedItemId && selectedItemId !== "" && (
         <UpdateModal
           selectedItem={items.find((item) => item.id === selectedItemId)}
-          selectedIndex={selectedItemId - 1}
+          selectedId={selectedItemId}
+          setSelectedItemId={setSelectedItemId}
           showModal={showEditModal}
           setShowModal={setShowEditModal}
           nameChoices={nameChoices}
           cityChoices={cityChoices}
           statusChoices={statusChoices}
+          setRefetch={setRefetch}
         />
       )}
     </>

@@ -3,3 +3,8 @@
   justify-content: start;
   align-items: flex-end;
 }
+
+.spinner {
+  display: flex;
+  justify-content: center;
+}

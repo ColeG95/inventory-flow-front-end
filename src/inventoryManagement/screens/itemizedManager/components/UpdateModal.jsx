@@ -13,6 +13,8 @@ import Slide from "@mui/material/Slide";
 import "./Modal.css";
 import Toggle from "../../../../components/Toggle";
 import { TextField } from "@mui/material";
+import axios from "axios";
+import MySnackbar from "../../../../components/MySnackbar";
 
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -25,11 +27,10 @@ function UpdateModal({
   cityChoices,
   statusChoices,
   selectedItem,
-  selectedIndex,
+  selectedId,
+  setRefetch,
+  setSelectedItemId,
 }) {
-  console.log("here");
-  console.log(selectedItem);
-
   useEffect(() => {
     setSelectedName(selectedItem.name);
     setSelectedCity(selectedItem.city);
@@ -63,6 +64,67 @@ function UpdateModal({
   const [selectedPrice, setSelectedPrice] = useState(
     selectedItem?.price !== undefined ? selectedItem.price : ""
   );
+  const [showSnackbar, setShowSnackbar] = useState(false);
+  const [showSnackbarFail, setShowSnackbarFail] = useState(false);
+
+  function showSuccess() {
+    setShowSnackbar(true);
+    setTimeout(() => {
+      setShowSnackbar(false);
+    }, "5000");
+  }
+
+  function showFailure() {
+    setShowSnackbarFail(true);
+    setTimeout(() => {
+      setShowSnackbarFail(false);
+    }, "5000");
+  }
+
+  function editEntry() {
+    let mySku;
+    if (selectedName === "Monitor") {
+      mySku = "123";
+    } else if (selectedName === "Chair") {
+      mySku = "124";
+    } else if (selectedName === "Desk") {
+      mySku = "125";
+    } else {
+      mySku = "";
+    }
+    console.log(selectedId);
+    console.log({
+      city: selectedCity,
+      name: selectedName,
+      status: selectedStatus,
+      sku: mySku,
+      volume: selectedVolume,
+      volumeUnits: selectedUnits,
+      price: selectedPrice,
+      currency: selectedCurrency,
+    });
+    axios
+      .put(`http://localhost:9000/item/${selectedId.toString()}`, {
+        city: selectedCity,
+        name: selectedName,
+        status: selectedStatus,
+        sku: mySku,
+        volume: selectedVolume,
+        volumeUnits: selectedUnits,
+        price: selectedPrice,
+        currency: selectedCurrency,
+      })
+      .then((res) => {
+        if (res.status >= 200 && res.status < 300) {
+          //   setSelectedItemId(selectedId);
+          showSuccess();
+          setRefetch((prev) => prev + 1);
+          handleClose();
+        } else {
+          showFailure();
+        }
+      });
+  }
 
   function handleClickOpen() {
     setShowModal(true);
@@ -90,6 +152,18 @@ function UpdateModal({
 
   return (
     <div>
+      <MySnackbar
+        showSnackbar={showSnackbar}
+        setShowSnackbar={setShowSnackbar}
+        message="Entry Edited"
+        severity="success"
+      />
+      <MySnackbar
+        showSnackbar={showSnackbarFail}
+        setShowSnackbar={setShowSnackbarFail}
+        message="Fill in all fields!"
+        severity="error"
+      />
       <Dialog
         fullScreen
         open={showModal}
@@ -117,7 +191,7 @@ function UpdateModal({
             <Button
               autoFocus
               className="barBtn"
-              onClick={handleClose}
+              onClick={editEntry}
               variant="outlined"
             >
               Save
